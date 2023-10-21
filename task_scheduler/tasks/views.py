@@ -8,6 +8,15 @@ import csv
 
 @login_required(login_url='user-login')
 def home(request):
+    """
+    Renders the user's task list on the home page and handles task creation and searching.
+
+    Parameters:
+    - request: The HTTP request object.
+
+    Returns:
+    - A rendered page displaying the user's tasks.
+    """
     if request.GET.get('search'):
         search = request.GET.get('search')
         searched_tasks = Tasks.objects.filter(task_name__icontains=search)
@@ -28,6 +37,16 @@ def home(request):
 
 
 def task_update(request, pk):
+    """
+    Allows the user to update a specific task.
+
+    Parameters:
+    - request: The HTTP request object.
+    - pk: The primary key of the task to be updated.
+
+    Returns:
+    - A rendered page for updating the task or a redirection to the home page upon completion.
+    """
     tsk = Tasks.objects.get(pk=pk)
     form = TaskForm(instance=tsk)
     context = {'form': form}
@@ -42,12 +61,31 @@ def task_update(request, pk):
 
 
 def delete(request, pk):
+    """
+    Deletes a specific task.
+
+    Parameters:
+    - request: The HTTP request object.
+    - pk: The primary key of the task to be deleted.
+
+    Returns:
+    - Redirects to the home page after deleting the task.
+    """
     tsk = Tasks.objects.get(pk=int(pk))
     tsk.delete()
     return redirect('home')
 
 
 def export_csv(request):
+    """
+    Exports the user's tasks in CSV format.
+
+    Parameters:
+    - request: The HTTP request object.
+
+    Returns:
+    - A CSV file containing the user's task data.
+    """
     response = HttpResponse(content_type='text/csv')
     writer = csv.writer(response)
     writer.writerow(['task_name', 'deadline'])
@@ -60,4 +98,13 @@ def export_csv(request):
 
 
 def about(request):
+    """
+    Renders the 'About' page of the application.
+
+    Parameters:
+    - request: The HTTP request object.
+
+    Returns:
+    - A rendered 'About' page.
+    """
     return render(request, 'tasks/about.html')
