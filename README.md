@@ -46,7 +46,7 @@ Follow these steps to set up the Task Scheduler project on your local machine:
 
 8. **Access the application in your web browser at your [localhost](http://127.0.0.1:8000/)**
 
-- **Usage**
+## Usage
 - Visit the application in your web browser.
 Register a new account or log in with your existing credentials.
 Create, update, and delete tasks on the "Home" page.
