@@ -1,5 +1,70 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% load crispy_forms_tags %}
+
 
 {% block content %}
-    <h1>Welcome to my homepage</h1>
-{% endblock content%}
+    <h1>Task Scheduler</h1>
+
+<!--    <form method="post">-->
+<!--        {% csrf_token %}-->
+<!--        <div class="mb3">-->
+<!--            <label class="form-label" for="task">Task Name</label>-->
+<!--            <input class="form-control" type="text" id="task" name="task">-->
+<!--        </div>-->
+
+<!--        <div class="mb3">-->
+<!--            <label class="form-label" for="task-deadline">Date Deadline</label>-->
+<!--            <input class="form-control" type="datetime-local" id="task-deadline" name="task-deadline" required>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <button type="submit" class="btn btn-secondary">Submit</button>-->
+<!--    </form>-->
+
+
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_javascript jquery='full' %}
+        {{ form.media }}
+        {{ form|crispy }}
+
+        <br>
+        <button type="submit" class="btn btn-secondary">Submit</button>
+    </form>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Task name</th>
+          <th scope="col">Deadline</th>
+          <th scope="col">Time until</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in main_tasks %}
+        {% now "m-d-Y" as today_date %}
+            {% if task.date_deadline|date:"m-d-Y" <= today_date %}
+                <tr class="table-danger">
+                  <td>{{ task.task_name }}</td>
+                  <td>{{ task.date_deadline|date:"m-d-Y" }}</td>
+                  <td>{{ task.date_deadline|timeuntil }}</td>
+                  <td><a href="{% url 'update' task.id %}" class="btn btn-secondary">Edit</a></td>
+                  <td><a href="{% url 'delete' task.id  %}" class="btn btn-secondary">Delete</a></td>
+                </tr>
+            {% else %}
+                <tr class="table-success">
+                  <td>{{ task.task_name }}</td>
+                  <td>{{ task.date_deadline|date:"m-d-Y" }}</td>
+                  <td>{{ task.date_deadline|timeuntil }}</td>
+                  <td><a href="{% url 'update' task.id %}" class="btn btn-secondary">Edit</a></td>
+                  <td><a href="{% url 'delete' task.id  %}" class="btn btn-secondary">Delete</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    <div>
+        <a href="{% url 'export-csv' %}" class="btn btn-secondary">Export</a>
+    </div>
+{% endblock content %}
