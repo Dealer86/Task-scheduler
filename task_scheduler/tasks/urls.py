@@ -1,7 +1,11 @@
 from django.urls import path
-from .views import home, about
+from . import views
+
 
 urlpatterns = [
-    path("home/", home, name="home"),
-    path("about/", about, name="about")
+    path('', views.home, name='home'),
+    path('task/<str:pk>', views.delete, name='delete'),
+    path('update/<str:pk>', views.task_update, name='update'),
+    path('export-csv/', views.export_csv, name='export-csv'),
+    path('about/', views.about, name='about'),
 ]
