@@ -54,7 +54,7 @@ Use the search bar to find tasks by keyword.
 Access the "About" page for information about the application.
 Log out when done.
 
-## Technology Stack Used in Task Scheduler
+## Technology Stack
 
 Task Scheduler is a web application developed using a technology stack that combines various tools and frameworks to create a robust and functional project. Here's an overview of the key components in the technology stack used for Task Scheduler:
 
