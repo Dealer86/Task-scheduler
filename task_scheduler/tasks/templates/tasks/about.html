@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>About my home page</h1>
-{% endblock content%}
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1>Task Scheduler</h1>
+
+                <p>
+                    Task Scheduler is a web application built using Django that allows users to manage their tasks efficiently. It consists of two main apps, `tasks` and `users`, enabling users to create, update, delete, and search for tasks. Users can also register, log in, and log out, ensuring a personalized experience.
+                </p>
+
+                <h2>Features</h2>
+                <ul>
+                    <li>User Registration and Authentication: Users can register for an account and log in to access their tasks.</li>
+                    <li>Task Management: Users can create, update, and delete tasks, including specifying a task name and deadline.</li>
+                    <li>Task Search: Users can search for tasks using keywords.</li>
+                    <li>Task Export: Users can export their tasks in CSV format.</li>
+                    <li>User Logout: Users can log out of their accounts.</li>
+                    <li>About Page: A simple "About" page providing information about the application.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
