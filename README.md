@@ -100,4 +100,7 @@ Standard **HTML and CSS** for creating web pages and defining the application's 
 
 - `bootstrap_datepicker_plus`: Provides date and time picker widgets in forms.
 - `django.contrib.auth`: Handles user authentication and authorization.
-
+## Testing
+- **Unit Tests**: Using Django's built-in testing framework.
+- **Continuous Integration**: This project uses GitHub Actions for automated continuous integration.
+[![Django CI](https://github.com/Dealer86/Task-scheduler/actions/workflows/django.yml/badge.svg)](https://github.com/Dealer86/Task-scheduler/actions/workflows/django.yml)
